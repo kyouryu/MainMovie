@@ -1,0 +1,112 @@
+/* //////////////////////////////////////////////////
+
+[HOME]
+////////////////////////////////////////////////// */
+
+
+  /*      #プリローダー
+----------------------------------------------------*/
+
+.gallery { list-style:none;
+           padding: 0px;
+           margin: 0px; }
+
+.gallery li { 
+/*        画像のある背景*/
+    background:#e8e8e8; 
+
+    float:left; 
+    display:block;
+/*                  角丸を表現*/
+/* Firefox用 */  
+    -moz-border-radius:10px;
+     /* Safari,Google Chrome用 */  
+    -webkit-border-radius:10px;
+    border-radius:10px; 
+
+    padding:0;
+
+/*    ボックスモデルに影*/
+    -webkit-box-shado:1px 1px 6px #ddd; 
+    -moz-box-shadow:1px 1px 6px #ddd; 
+    box-shadow:1px 1px 6px #ddd; 
+    
+    margin: 3px;
+}
+
+.gallery li a { 
+    display:block; 
+             
+               padding:0; 
+               text-decoration:none;  
+/*               画像の大きさと合わせる*/
+               width:150px; 
+               height:211px;
+}
+
+
+.gallery img 
+{ width:150px;
+  height:211px; 
+  margin:0;
+  padding:0;
+  
+/*                角丸を表現*/
+ border-radius: 10px;
+ -moz-border-radius: 10px;
+ -webkit-border-radius: 10px;
+
+}
+
+
+/*ローディング中画像*/
+.preloader { 
+    background:url(i/89.gif)
+   center center no-repeat #ffffff;  }
+
+
+
+
+/* //////////////////////////////////////////////////
+[TOP] 
+////////////////////////////////////////////////// */
+
+/* header
+----------------------------------- */
+#topListHeader {
+
+	margin-bottom:5px;
+}
+
+
+#sliderList {
+     width: 1100px;
+            height: 700px;
+	position: relative;
+	margin: 0 auto;
+       
+}
+
+
+/*ビューエリアが指定したサイズ（950px）より小さい場合に、スタイルが適用*/
+@media screen and (max-width: 950px) {
+	.jquery-slider {
+   width: 500px
+
+}
+}
+
+/*ビューエリアが指定したサイズ（480px）より小さい場合に、スタイルが適用*/
+@media screen and (max-width: 480px) {
+	#content {
+		margin: 170px auto 50px;
+	}
+	#content {
+		padding: 0 5px;
+	}
+}
+
+h4 {
+    display: none;
+}
+

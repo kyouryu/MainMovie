@@ -1,0 +1,93 @@
+/* //////////////////////////////////////////////////
+
+[HOME]
+////////////////////////////////////////////////// */
+
+
+/* //////////////////////////////////////////////////
+[TOP] 
+////////////////////////////////////////////////// */
+
+/* header
+----------------------------------- */
+
+
+#searchHeader {
+border-bottom: solid 1px black;
+margin-bottom: 20px;
+}
+
+
+
+/* searchList
+----------------------------------- */
+/*チェックをつける箇所*/
+input[type="checkbox"] {
+    margin-right: 2px;
+     font-size: 13%;
+}
+
+.sectionWrapper {
+margin-bottom: 5px;
+border-bottom: 1px solid #CCC;
+padding-bottom: 5px;
+display: block;
+}
+
+/*fieldset内のdiv要素(各値)*/
+#searchList div{
+    display: inline-block;/*小さいブロック要素とかを横並び*/
+}
+
+.checkbox{
+/*    ボックスとラベルとを兵子に*/
+    vertical-align:middle; 
+/*    ラベル同士の間隔*/
+  margin-right: 10px;
+   font-size: 93%;
+}
+
+
+ /*チェックボックス内のラベル要素*/
+.checkbox label {
+    display: inline;/*横並び*/ 
+font-weight: normal;/*通常の文字*/
+/*padding-right: 2px;*/
+}
+    
+
+
+
+/*ラベル名とチェックボックスのタイトル*/
+label{
+font-weight:bold;/*文字を太字*/
+    display: block; /*項目名をブロック(上)で表示する*/
+  font-size: 108%;
+line-height: 1.3;
+
+}
+
+/*fieldset内のラベルにカーソルを合わせると*/
+.checkbox label:hover {
+    background-color: #ffcccc;/*色付ける*/
+   
+}
+
+/*検索ボタン*/
+#searchBtnSet {
+text-align: center;
+ font-size: 124%;
+}
+
+#list li{
+     display: inline-block;/*小さいブロック要素とかを横並び*/
+    padding: 0px;
+}
+
+#result {
+clear: both;
+padding: 10px 0px;
+border: 1px solid #DDD;
+margin-top: 20px;
+margin-bottom: 20px;
+}

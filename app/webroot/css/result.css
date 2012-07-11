@@ -1,0 +1,224 @@
+/* //////////////////////////////////////////////////
+
+[HOME]
+////////////////////////////////////////////////// */
+
+
+/* //////////////////////////////////////////////////
+[TOP] 
+////////////////////////////////////////////////// */
+
+/* header
+----------------------------------- */
+#movieListHeader {
+	border-bottom: solid 1px black;
+	margin-bottom: 15px;
+}
+
+
+#movieListHeader h1 {
+	float: left;
+	font-size: 247%;
+	line-height: 1.2;
+}
+
+
+/* indicateNumber
+----------------------------------- */
+#indicateNumber {
+	float: right;
+	line-height: 1;
+	margin: -3px 5px 10px 0;
+	color: black;
+}
+
+#indicateNumber .number {
+	font-size: 369%;
+	font-weight: bold;
+	margin-right: 5px; 
+}
+
+#indicateNumber .unit {
+	font-size: 139%;
+}
+#indicateNumber .amount {
+	color: #ccc;
+	font-size: 139%;
+}
+
+
+/* 
+	supFunction(検索内容)
+-------------------------------------------------- */
+#supFnctionWrap {
+	margin-bottom: 5px;
+}
+
+
+
+/*検索条件範囲*/
+#serCondition {
+  background: #EEE;
+padding: 8px 20px 8px 13px;
+border-radius: 5px;
+}
+
+#serCondition li {
+/*    小さいブロック要素とかを横並び*/
+	display: inline-block;
+        padding-right: 15px;
+/*        IE用*/
+	*display: inline;
+	*zoom: 1;
+        
+}
+
+/*検索条件内容*/
+.serSet {
+    margin: 0px 10px;
+    padding-left: 0px;
+}
+
+
+
+
+/* contens
+----------------------------------- */
+#movieList {
+position: relative;
+margin-bottom: 30px;
+}
+
+
+#movieBlockContainer {
+/*182(少し大きい画像サイズ)*5(画像の数)+20(左右のマージン)*5=1010*/
+width: 1010px;
+margin: 0 auto;
+}
+
+/* Media Queries
+----------------------------------- */
+/*ビューエリアが指定したサイズ（1230px）より小さい場合に、スタイルが適用*/
+@media screen and (max-width: 1230px) {
+	 #movieBlockContainer {
+		width: 888px;
+	}
+}
+
+/*ビューエリアが指定したサイズ（1008px）より小さい場合に、スタイルが適用*/
+@media screen and (max-width: 1008px) {
+ #movieBlockContainer {
+		width: 666px;
+	} 
+}
+
+
+/* 作品群
+----------------------------------- */
+.unitMovie {
+	float: left;
+/*        画像より少し大きい*/
+	width: 182px;
+	_display: inline;
+	margin: 0 10px 40px 10px;
+}	
+.innr h4 {
+    display: none;
+}
+ 
+/*スライド内部*/
+.unitMovie .innr {
+	position: relative;
+        /*        画像のある背景*/
+    background:#e8e8e8; 
+
+    float:left; 
+    display:block;
+    
+/*                  角丸を表現*/
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:10px; 
+    padding:0;
+
+/*    ボックスモデルに影*/
+    -webkit-box-shado:1px 1px 6px #ddd; 
+    -moz-box-shadow:1px 1px 6px #ddd; 
+    box-shadow:1px 1px 6px #ddd; 
+}
+
+.unitMovie .innr .image a {
+/*    innrが親要素を基準に絶対配置*/
+	position: absolute;
+	display: block;
+/*        上スライドした画像がはみ出したら表示しない*/
+	overflow: hidden;
+/*        画像と同じ*/
+	width: 180px;
+	height: 253px;
+}
+
+
+.unitMovie .innr .image a img {
+	position: absolute;
+	display: block;
+	top: 0;
+	left: 0;
+/*        画像の角丸*/
+ border-radius: 10px;
+ -moz-border-radius: 10px;
+ -webkit-border-radius: 10px;
+/*変化に掛かる時間、ゆっくり始まってゆっくり終わる*/
+	transition: 0.3s ease-in-out;
+	-webkit-transition: 0.3s ease-in-out;
+	-moz-transition: 0.3s ease-in-out;
+}
+
+/*上に移動する　captureはimgタグ内*/
+.unitMovie:hover .slideUp a .capture { top: -281px; }
+/*.unitMovie:hover .slideUp a .logo { top: -250px; }
+.unitMovie:hover .slideDown a .logo { top: 250px; }
+.unitMovie:hover .slideDown a .capture { top: 350px; }
+.unitMovie:hover .slideLeft a img { left: -200px; }
+.unitMovie:hover .slideRight a img { left: 200px; }*/
+
+
+/*スライドした後に表示される文字*/
+.unitMovie .tagline {
+      font-family:NewCinemaBStd-D,"ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro","ＭＳ Ｐ明朝", "MS PMincho", serif;
+	width: 180px;
+	height: 253px;
+	padding: 0 5px;
+	font-size: 200%;
+	font-weight: bold;
+	line-height: 1.1;
+        
+        
+        /*        display: table-cell を指定した要素で 
+vertical-align プロパティを使用すると、その中身の要素の垂直方向の配置位置を指定*/
+        
+/*        縦方向に対する高さを揃える*/
+	display: table-cell;
+/*        文字の表示位置*/
+	vertical-align: middle;
+
+	
+
+overflow: hidden;
+}
+
+
+/*.unitMovie .balloon01 { background-position: 0 0; }
+.unitMovie .balloon02 { background-position: 0 -250px; }
+.unitMovie .balloon03 { background-position: 0 -500px; }*/
+
+/*背景画像の表示開始位置*/
+.unitMovie .balloon04 {
+line-height: 1.5;
+font-size: 124%;
+
+/*両端揃え指定*/
+   text-align: justify;
+/*アジアの言語などの単語間隔を持たない言語のテキストを均等割り*/
+  text-justify: inter-ideograph;}
+

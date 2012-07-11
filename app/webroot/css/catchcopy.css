@@ -1,0 +1,122 @@
+/* //////////////////////////////////////////////////
+
+[HOME]
+////////////////////////////////////////////////// */
+
+
+/* //////////////////////////////////////////////////
+[TOP] 
+////////////////////////////////////////////////// */
+
+/* header
+----------------------------------- */
+#movieListHeader {
+	border-bottom: solid 1px black;
+	margin-bottom: 15px;
+}
+
+
+#movieListHeader h1 {
+	float: left;
+	font-size: 247%;
+	line-height: 1.2;
+}
+
+
+/* indicateNumber
+----------------------------------- */
+#indicateNumber {
+	float: right;
+	line-height: 1;
+	margin: -3px 5px 10px 0;
+	color: black;
+}
+
+#indicateNumber .number {
+	font-size: 369%;
+	font-weight: bold;
+	margin-right: 5px; 
+}
+
+#indicateNumber .unit {
+	font-size: 139%;
+}
+#indicateNumber .amount {
+	color: #ccc;
+	font-size: 139%;
+}
+
+
+
+/* contens
+----------------------------------- */
+#movieList {
+position: relative;
+margin-bottom: 30px;
+}
+
+
+#movieBlockContainer {
+/*182(少し大きい画像サイズ)*5(画像の数)+20(左右のマージン)*5=1010*/
+width:1000px;
+margin: 0 auto;
+}
+
+/* Media Queries
+----------------------------------- */
+/*ビューエリアが指定したサイズ（1230px）より小さい場合に、スタイルが適用*/
+@media screen and (max-width: 1230px) {
+	 #movieBlockContainer {
+		width: 888px;
+	}
+}
+
+/*ビューエリアが指定したサイズ（1008px）より小さい場合に、スタイルが適用*/
+@media screen and (max-width: 1008px) {
+ #movieBlockContainer {
+		width: 333px;
+	} 
+}
+
+.picktxtarea {
+width: 450px;
+float: left;
+padding-top: 15px;
+margin-right: 25px;
+margin-left: 25px;
+background: url(http://eiganokotoba.jp/common/images/bg_borderside.jpg) left top repeat-x;
+padding-top: 20px;
+padding-bottom: 10px;
+    cursor: pointer;
+cursor: hand;
+}
+
+
+.picktit {
+font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+font-size: 77%;
+font-weight: bold;
+padding-top: 12px;
+color: #666;
+letter-spacing: 0.1em;
+text-align: right;
+}
+
+.picklines {
+font-family: NewCinemaBStd-D,"ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro","ＭＳ Ｐ明朝", "MS PMincho", serif;
+font-size: 100%;
+font-weight: bold;
+line-height: 140%;
+letter-spacing: 0.2em;
+color: #333;
+font-weight: 700;
+min-height: 38px;
+letter-spacing: 0.1em 9;
+}
+
+ a:hover {
+opacity: 0.6;
+-moz-opacity: 0.6;
+-webkit-opacity: 0.6;
+
+}

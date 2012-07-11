@@ -1,0 +1,132 @@
+/* //////////////////////////////////////////////////
+[View] 
+////////////////////////////////////////////////// */
+
+
+/* --------------------------------------------------
+	Content
+-------------------------------------------------- */
+/*全体*/
+#movieSection {
+ width: 90%;
+    margin: 0 auto;
+}
+
+
+/* --------------------------------------------------
+	columnRight
+-------------------------------------------------- */
+.columnRight {
+	float: right;
+	width: 73%;
+}
+
+
+
+
+/* --------------------------------------------------
+	columnLeft
+-------------------------------------------------- */
+
+/*columnRightと合計で100近くにする*/
+.columnLeft {
+float: left;
+width: 23%;
+}
+
+
+/* 
+	Movie Gallery
+-------------------------------------------------- */
+#blockMovieGallery {
+	position: relative;
+	margin: 0 auto;
+} 
+
+#mainCapture {
+	position: relative;
+	width: 100%;
+        margin-top: 30%;
+	margin-bottom: 4%;   
+/*	border: solid 1px #ccc;*/
+	overflow: hidden;
+}
+
+
+
+/* --------------------------------------------------
+	columnRight
+-------------------------------------------------- */
+#movieSectionHeader {
+	border-bottom: solid 1px black;
+	margin-bottom: 20px;
+	padding: 10px 0;
+}
+#movieSectionHeader h1 {
+	float: left;
+	padding: 0;
+	font-size: 247%;
+	line-height: 1;
+}
+
+
+#outlineSection {
+padding-bottom: 30px;
+}
+/* 
+	summary
+-------------------------------------------------- */
+
+h2.ttl {
+    font-family:NewCinemaBStd-D,"ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro","ＭＳ Ｐ明朝", "MS PMincho", serif;
+padding: 10px 15px;
+font-size: 185%;
+background: #EEE;
+background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 1, from(black), color-stop(33%, black), color-stop(33%, white), to(white));
+background: -moz-radial-gradient(circle, #666 0%, #666 33%, white 33%, white 100%); 
+-webkit-background-size: 3px 3px;
+-moz-background-size: 3px 3px;
+text-shadow: -2px -2px 0 white, 2px -2px 0 white, 2px 2px 0 white, -2px 2px 0 white;
+background-size: 3px 3px;	
+}
+
+
+#outlineSection p {
+	margin-top: 20px;
+         text-align: justify;
+  text-justify: inter-ideograph;
+
+}
+
+
+/* 
+	テーブル
+-------------------------------------------------- */
+
+#blockDetailData {
+	margin-bottom: 30px;
+}
+
+#trailerSection {
+margin-bottom: 20px;
+}
+
+
+#trailerSection h3 {
+margin-bottom: 15px;
+}
+
+#trailerSection .content {
+padding-left: 15px;
+border-left: dashed 1px black;
+}
+
+
+/*テーブルのタイトル*/
+caption, th, td {
+    
+	
+/*     行のなかでのテキストや画像   中央揃え*/
+	vertical-align: middle;
+     
+}

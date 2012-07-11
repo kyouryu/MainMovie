@@ -1,0 +1,107 @@
+/* //////////////////////////////////////////////////
+
+[HOME]
+////////////////////////////////////////////////// */
+
+
+
+/* header
+----------------------------------- */
+#movieListHeader {
+	border-bottom: solid 1px black;
+	margin-bottom: 15px;
+}
+
+
+#movieListHeader h1 {
+	float: left;
+	font-size: 247%;
+	line-height: 1.2;
+}
+
+
+/* indicateNumber
+----------------------------------- */
+#indicateNumber {
+	float: right;
+	line-height: 1;
+	margin: -3px 5px 10px 0;
+	color: black;
+}
+
+#indicateNumber .number {
+	font-size: 369%;
+	font-weight: bold;
+	margin-right: 5px; 
+}
+
+#indicateNumber .unit {
+	font-size: 139%;
+}
+#indicateNumber .amount {
+	color: #ccc;
+	font-size: 139%;
+}
+
+
+
+
+/* contens
+----------------------------------- */
+#movieList {
+position: relative;
+margin-bottom: 30px;
+}
+
+
+#movieBlockContainer {
+/*182(少し大きい画像サイズ)*5(画像の数)+20(左右のマージン)*5=1010*/
+width: 1045px;
+margin: 0 auto;
+}
+
+/* Media Queries
+----------------------------------- */
+/*ビューエリアが指定したサイズ（1230px）より小さい場合に、スタイルが適用*/
+@media screen and (max-width: 1230px) {
+	 #movieBlockContainer {
+		width: 888px;
+	}
+}
+
+/*ビューエリアが指定したサイズ（1008px）より小さい場合に、スタイルが適用*/
+@media screen and (max-width: 1008px) {
+ #movieBlockContainer {
+		width: 333px;
+	} 
+}
+
+
+/* 作品群
+----------------------------------- */
+.unitMovie {
+	float: left;
+	_display: inline;
+	margin: 0 5px 10px 5px;
+}	
+.innr h4 {
+    display: none;
+}
+ 
+
+
+.unitMovie .innr .image a img {
+	
+/*        画像の角丸*/
+ border-radius: 10px;
+ -moz-border-radius: 10px;
+ -webkit-border-radius: 10px;
+
+}
+
+.unitMovie .innr .image a:hover {
+opacity: 0.6;
+-moz-opacity: 0.6;
+-webkit-opacity: 0.6;
+
+}

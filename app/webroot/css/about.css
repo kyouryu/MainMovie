@@ -1,0 +1,25 @@
+/* //////////////////////////////////////////////////
+
+[HOME]
+////////////////////////////////////////////////// */
+
+#aboutSection{
+  width: 800px;
+    margin: 0 auto;
+    padding: 40px 0px;
+}
+ .f14 {
+font-size: 108%;
+}
+#aboutSection p{ 
+    margin: 10px 0px;
+}
+
+.f16 {
+    font-size: 124%;
+}
+
+.pink {
+color: #A74860;
+}
+

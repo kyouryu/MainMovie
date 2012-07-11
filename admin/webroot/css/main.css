@@ -1,0 +1,956 @@
+@charset "UTF-8";
+
+/*
+	面白法人カヤック
+	Copyright (C) KAYAC Inc. All Rights Reserved
+
+*/
+
+/* //////////////////////////////////////////////////
+[Base] 
+////////////////////////////////////////////////// */
+
+/* --------------------------------------------------
+	0. Resetting default margin and padding
+-------------------------------------------------- */
+body, div, dl, dt, dd, ul, ol, li,
+h1, h2, h3, h4, h5, h6,
+object, iframe, pre, code, p, blockquote,
+form, fieldset, legend,
+table, th, td, caption, tbody, tfoot, thead,
+article, aside, figure, footer, header,
+hgroup, menu, nav, section, audio, video, canvas {
+	margin: 0;
+	padding: 0;
+}
+article, aside, figure, figcaption,footer,
+h1, h2, h3, h4, h5, h6, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+/* --------------------------------------------------
+	1. HTML, Body, Anchor
+-------------------------------------------------- */
+/*縦スクロールバーのみを常時表示*/
+html { overflow-y: scroll; } /* for mozilla: always display scrollbar */
+
+body {
+	color: #333;
+	font-family: Myriad, Helvetica, Arial, "Meiryo", "メイリオ", sans-serif;
+/*        IEだけが解釈して他のブラウザは無視する*/
+	_font-family: 'ＭＳ Ｐゴシック', sans-serif;
+	font-size: 13px;
+        /* IE7 and below */
+	*font-size: 82%;
+/*        その数値にフォントのサイズを掛けた値が行の高さ*/
+	line-height: 1.6;
+/*        和文・英文共に単語の途中であっても改行*/
+	word-break: break-all; 
+/*        iPhoneやiPod Touch などで閲覧した際に、横向きにすると縦の時より自動的に文字サイズが大きく*/
+	-webkit-text-size-adjust:none;
+}
+
+
+/*html.osMac body,
+body.osMac {
+	font-family: Myriad, Helvetica, Arial, "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", "Meiryo","メイリオ",  sans-serif;
+}*/
+
+
+
+/*
+Font-size list (base: 13px)
+ 62% =  8px
+ 70% =  9px
+ 77% = 10px
+ 85% = 11px        162% = 21px        239% = 31px
+ 93% = 12px        170% = 22px        247% = 32px
+100% = 13px        177% = 23px        254% = 33px
+108% = 14px        185% = 24px        262% = 34px
+116% = 15px        193% = 25px        270% = 35px
+124% = 16px        200% = 26px        277% = 36px
+131% = 17px        208% = 27px        285% = 37px
+139% = 18px        216% = 28px        293% = 38px
+147% = 19px        224% = 29px        300% = 39px
+154% = 20px        231% = 30px        308% = 40px
+*/
+
+/*リンク色*/
+a { color: #333; }
+/*未訪問リンク　訪問済みリンク　テキストに下線*/
+a:link, a:visited { text-decoration: underline; }
+/*マウスカーソルを乗せたリンク　選択したリンク　テキストに線つかない*/
+a:hover, a:active  { text-decoration: none; }
+
+/*文字を選択して反転状態*/
+:selection {
+/*     text-shadowの変な表示を殺す*/
+	text-shadow: none !important;
+}
+
+
+
+/* --------------------------------------------------
+	2. Heading, Paragraph
+-------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+	color: black;
+	font-size: 100%;
+}
+
+/* p {} */
+
+/* --------------------------------------------------
+	3. List
+-------------------------------------------------- */
+li { list-style: none; }
+
+/* --------------------------------------------------
+	4. Table
+-------------------------------------------------- */
+table {
+/*    隣接するセルのボーダーを重ねて表示*/
+	border-collapse: collapse;
+/*        隣接するセルのボーダーとボーダーの間隔を０*/
+	border-spacing: 0;
+	font-size: 100%;
+/*        親要素から継承*/
+	font-family: inherit;
+}
+
+/*テーブルのタイトル*/
+caption, th, td {
+    
+	text-align: left;
+/*     行のなかでのテキストや画像   上端揃え*/
+	vertical-align: top;
+        
+        /*        強調表示しない*/
+	font-weight: normal;
+}
+
+
+/* --------------------------------------------------
+	5. Form
+-------------------------------------------------- */
+fieldset { border: none; }
+input, textarea, select, label {
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: middle;
+}
+
+label { 
+/*    マウスカーソルの形状　リンクカーソル*/
+    cursor: pointer;
+}
+textarea { 
+/*    ボックスの範囲内に内容が入りきらない場合に、はみ出た部分の表示の仕方：ブラウザに依存*/
+    overflow: auto;
+}
+
+legend { 
+/*    何も表示しない*/
+    display: none;
+}
+
+
+/* --------------------------------------------------
+	6. Other
+-------------------------------------------------- */
+
+
+img {
+    /*枠線を非表示*/
+	border: none;
+/*        画像に並ぶテキストの位置を：画像の上端*/
+	vertical-align: top;
+}
+
+
+/*object {
+	vertical-align: middle;
+	outline: none;
+}*/
+
+/*太字に*/
+em, strong {
+	font-weight: bold;
+	font-style: normal;
+}
+
+
+small { font-size: 100%; }
+
+/*略語*/
+/*abbr, acronym {
+	border: none;
+	font-variant: normal;
+}*/
+
+
+/*引用符要素の前後に内容（文字列や画像等('')）を追加*/
+q:bqefore, q:after { content: ''; }
+
+/*連絡先やコードやらの指定*/
+address, caption, cite, code, dfn, var {
+	font-weight: normal;
+	font-style: normal;
+}
+
+/*プログラムのソースコード,半角スペースや改行をそのまま表示*/
+code, pre { font-family: monospace; }
+/*上付き文字*/
+sup { vertical-align: text-top; }
+
+/*下付き文字*/
+sub { vertical-align: text-bottom; }
+
+/*区切り*/
+hr { display: none; }
+
+/* ------------------------------------------------------------
+	7. For IE6/7
+------------------------------------------------------------ */
+
+/* for IE7: page zoom bug fix */
+*:first-child+html body,
+*:first-child+html br { 
+/*    2つ目（偶数個目）のbr要素が無視を解決*/
+    letter-spacing: 0;
+}
+
+
+
+ /*----------------------------------------------------
+	8. エラー
+----------------------------------------------------*/
+    div.error-messaege {
+        display: block;
+	color: #9E2424;
+        margin: 0;
+        padding: 0;
+        
+/*        ボックスに影*/
+        /* Firefox用 */  
+	-webkit-box-shadow: none;
+        /* Safari,Google Chrome用 */
+	-moz-box-shadow: none;
+	box-shadow: none;
+	text-shadow: none;
+}
+
+
+
+
+/* //////////////////////////////////////////////////
+[Layout] 
+////////////////////////////////////////////////// */
+/* --------------------------------------------------
+	0. Container
+-------------------------------------------------- */
+#container {
+	/*    本来配置される位置から指定した値だけ移動*/
+	position: relative;
+/*        ここからはみ出た部分を表示しない 親ボックスを突き抜け解決*/
+	overflow: hidden;
+}
+
+
+
+
+/* --------------------------------------------------
+	1. Header
+-------------------------------------------------- */
+
+#siteHeader {
+      /*    本来配置される位置から指定した値だけ移動*/
+	position: relative;
+/*        containerCoverと同じ*/
+   max-width: 1300px;
+	margin: 0 auto;
+	z-index: 70;
+	padding-bottom: 20px;
+}
+
+
+
+/* siteName
+----------------------------------- */
+#siteName {
+	position: relative;
+/*        指定した要素を左に配置して、それに続く内容を右側*/
+	float: left;
+/*        タイトルの高さ幅*/
+	width: 230px;
+	height: 45px;
+        
+	margin: 20px 0 0;
+}
+
+
+#siteName a {
+
+    /*        topプロパティで指定するのは基準位置からの距離のみ
+positionプロパティを併用して、配置方法（基準位置）を設定*/
+	position: relative;
+	top: 0;
+	left: 0;
+        
+	display: block;
+/*        #siteNameと同じ*/
+	width: 230px;
+	height: 45px;
+	text-decoration: none;
+        
+/*        マウスを持っていくと変化する
+        時間でゆっくり始まりゆっくり終わる*/
+	transition: 0.1s ease-in-out;
+/*        サファリ用*/
+	-webkit-transition: 0.1s ease-in-out;
+/*        狐用*/
+	-moz-transition: 0.1s ease-in-out;
+}
+
+
+/*マウスを当てたときの大きさ変化*/
+#siteName a:hover,
+#siteName a:active {
+  
+/*    上へ少し移動*/
+	top: -3px;
+/*        左へ移動*/
+	left: -1px;
+        
+/*        マウスを当てるとすくし大きくなる*/
+	width: 253px;
+	height: 50px;
+}
+
+/*#siteName .label {
+    #siteNameが親要素
+	position: absolute;
+	bottom: 0;
+	left: 103%;
+	width: 130px;
+	margin-top: -7px;
+	font-weight: normal;
+	line-height: 1;
+        透明にする
+	opacity: 0;
+        開始透明は０
+	filter: alpha(opacity=0);
+
+	transition: 0.1s ease-in-out;
+	-webkit-transition: 0.1s ease-in-out;
+	-moz-transition: 0.1s ease-in-out;	
+}
+
+カーソルを載せたら
+#siteName a:hover + .label {
+    透過無しの状態“100%　
+	opacity: 1;
+        IE向け　上記と同じ
+	filter: alpha(opacity=100);
+	left: 107%;
+}*/
+
+
+/* Media Queries
+----------------------------------- */
+/*ビューエリアが指定したサイズ（950px）より小さい場合に、スタイルが適用
+@media screen and (max-width: 950px) {
+	#siteHeaderInnr {
+		padding: 0 30px;
+	}
+}
+
+表示領域が680px未満なら
+@media screen and (max-width: 680px) {
+	#siteName {
+            回り込みをさせない
+		float: none;
+		margin: 20px auto 10px;
+	}
+	#siteHeaderContent {
+		padding-bottom: 10px;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	#siteHeaderInnr {
+		min-width: 300px;
+		padding: 0 5px;
+	}
+        
+	#siteName a:hover,
+	#siteName a:active {
+		top: 0;
+		left: 0;
+		width: 230px;
+		height: 45px;
+	}	
+	#siteName a:hover img {
+		width: 230px;
+		height: 45px;
+		margin: 0;
+	}
+	#siteName a + .label {
+		display: none !important;
+	}
+
+}*/
+
+
+
+/* --------------------------------------------------
+	1. GlobalNav
+-------------------------------------------------- */ 
+
+#globalNavSection {
+/*    階層リスとメニューでも*/
+position: absolute;
+left: 0;
+z-index: 50;
+width: 100%;
+}
+
+
+#globalNavSection {
+	
+        
+}
+
+#globalNavSectionInnr {
+	position: relative;
+	z-index: 5;
+	max-width: 1300px;
+	margin: 0 auto;
+}
+
+.globalNavGroup {
+	float: left;
+/*        100%/4*/
+	width: 25%;
+}
+
+
+.globalNavGroup .label {
+	border-bottom: solid 1px black;
+        margin-right: 3%;
+}
+
+.globalNavGroup .label a {
+	display: block;
+	padding: 5px 3%;
+	font-size: 139%;
+	font-family: 'Molengo', arial, serif !important;
+/*        line-height:1;＝line-height:100%; 現在フォントの当該倍に相当する数値で行の高さを指定*/
+	line-height: 1;
+/*        文字間隔*/
+	letter-spacing: 0.1em;
+	text-decoration: none;
+	color: black;
+}
+
+.globalNavGroup ul {
+
+margin-top: 5px;
+padding: 0 5% 0 3%;
+}
+
+.globalNavGroup li a {
+	display: block;
+	padding: 0 1px;
+	font-size: 93%;
+	line-height: 1.7;
+	transition: 0.3s ease-in-out;
+	-webkit-transition: 0.3s ease-in-out;
+	-moz-transition: 0.3s ease-in-out;
+}
+
+.globalNavGroup li a:link, .globalNavGroup li a:visited {
+
+text-decoration: none;
+}
+
+.group li a:hover, .globalNavGroup li a:hover{
+	background-color:#e2e2e2;
+}
+
+
+/* Media Queries
+----------------------------------- */
+@media screen and (max-width: 950px) {
+	
+	#globalNavSectionInnr {
+		padding: 0 30px;
+	}
+	
+	.globalNavGroup {
+		width: 33% !important;
+	}
+	
+	.globalNavGroup .innr {
+		margin: 0;
+	}
+	.globalNavGroup .label {
+		width: 97%;
+	}
+	
+	.globalNavGroup .label a {
+		position: relative;
+		padding: 10px 3%;
+	}
+
+	
+	
+	
+}
+
+
+@media screen and (max-width: 480px) {
+	#globalNavSectionInnr {
+		padding: 0;
+	}
+	#globalNavSection {
+		min-width: 300px;
+	}
+	#globalNav {
+		position: relative;
+		width: 100%;
+		height: 100px;
+	}
+	#globalHome,
+	#globalAbout,
+	#globalSearch,
+	#globalContact
+	 {
+		position: absolute;
+		width: 50% !important;
+	} 
+	#globalHome { top: 0; left: 0; }
+	#globalAbout { top: 0; right: 0; }
+	#globalSearch { top: 39%; left: 0; }
+	#globalContact { top: 39%; right: 0; }
+	
+
+	#globalHome .label,
+	#globalSearch .label,
+	#globalHome ul,
+	#globalSearch ul
+	 {
+		width: 97%;
+	} 
+        
+	#globalAbout .label,
+	#globalContact .label, 
+	
+	#globalAbout ul,
+ 
+	#globalContact ul {
+		width: 100%;
+	} 
+	.globalNavGroup li a:hover,
+	.globalNavGroup li a:active {
+		background: transparent;
+	}
+	
+}
+
+
+
+/* --------------------------------------------------
+	2. content
+-------------------------------------------------- */
+
+#content {
+
+}
+
+#content {
+		position: relative;
+        
+/*        整数は大きい方が上層へ、小さい方が下層に配置*/
+	z-index: 30;
+	max-width: 1300px;
+/*        要素の幅の最小値を指定*/
+	min-width: 300px;
+	margin: 0 auto 50px;
+	padding-top: 70px;
+}
+
+/* Media Query
+----------------------------------- */ 
+/*ビューエリアが指定したサイズ（950px）より小さい場合に、スタイルが適用*/
+@media screen and (max-width: 950px) {
+	#content {
+/*            上・左右・下*/
+		margin: 125px auto 50px;
+		padding-top: 0;
+	}
+        
+	#content {
+		padding: 0 30px;
+	}
+}
+
+/*ビューエリアが指定したサイズ（480px）より小さい場合に、スタイルが適用*/
+@media screen and (max-width: 480px) {
+	#content {
+		margin: 170px auto 50px;
+	}
+	#content {
+		padding: 0 5px;
+	}
+}
+
+
+
+
+/* --------------------------------------------------
+	3. Footer
+-------------------------------------------------- */
+#siteFooterWrap {
+	
+}
+#siteFooter {
+   
+	width: 100%;
+	min-width: 300px;
+	background: black;
+	
+}
+#siteFooterInnr {
+     position: relative;
+	z-index: 15;
+	max-width: 1300px;
+	margin: 0 auto;
+        padding-bottom: 20px;
+}
+
+
+
+
+
+/* goPageTop
+----------------------------------- */
+#goPageTop {
+/*    siteFooterContentが親要素*/
+	position: absolute;
+/*        上にずらす*/
+	top: -43px;
+/*        右詰め*/
+	right: 0;
+}
+
+
+#goPageTop a {
+/*    ブロックレベルで扱われるようになり、行全体がリンク*/
+	display: block;
+	padding: 15px 0 12px 35px;
+	
+	font-size: 108%;
+	font-weight: bold;
+	line-height: 1;
+	text-decoration: none;
+}
+
+/* フッターエリア
+----------------------------------- */
+#blockFooterUtilityBar {
+/*    本来配置される位置から指定した値だけ移動*/
+	position: relative;
+	z-index: 5;
+/*        白の破線*/
+	border-bottom: dashed 1px white;
+	background: black;
+}
+
+#utilityNav {
+	float: left;
+	padding: 10px 0 0;
+}
+
+#utilityNav li {
+/*    小さいブロック要素とかを横並び*/
+	display: inline-block;
+        
+/*        IE用*/
+	*display: inline;
+	*zoom: 1;
+}
+
+#utilityNav li a {
+	display: block;
+	padding: 0 8px;
+	border-right: solid 1px white;
+	color: white;
+	font-size: 94%;
+	line-height: 1;
+	text-decoration: none;
+}
+#utilityNav li a:hover,
+#utilityNav li a:active {
+    
+	text-decoration: underline;
+}
+
+/*ラストだけ横棒なし*/
+#utilityNav .siteMap a {
+	border-right: none;
+}
+
+
+#blockFooterUtilityBar .copyright {
+	float: right;
+        /*utilityNavと同じ*/
+	padding: 10px 0;
+	color: white;
+	font-family: 'Molengo', arial, serif;
+	line-height: 1; 
+	text-decoration: none;
+}
+
+#blockFooterUtilityBar .copyright a:hover,
+#blockFooterUtilityBar .copyright a:active {
+	text-decoration: underline;
+}
+
+
+/* Media Query
+----------------------------------- */ 
+@media screen and (max-width: 950px) {
+	#siteFooterInnr {
+		padding: 0 30px;
+	}
+}
+@media screen and (max-width: 680px) {
+	#utilityNav,
+	#blockFooterUtilityBar .copyright {
+/*            回り込みしない*/
+		float: none;
+	}
+        
+	#utilityNav,
+	#blockFooterUtilityBar .copyright {
+		text-align: center;
+	}	
+	
+}
+@media screen and (max-width: 480px) {
+	
+	
+	#siteFooterInnr {
+		padding: 0;
+	}
+	#blockFooterUtilityBar .copyright {
+		font-size: 77%;
+	}
+}     
+
+
+/* --------------------------------------------------
+	Share Btn
+-------------------------------------------------- */ 
+#siteShareBtn {
+/*    conten内の最下層のコンテンツなので
+marigin_bottom:20px以下をしても無意味*/
+    position: relative;
+    z-index: 40;
+/*  元の配置から 50px 下にずれました*/
+    top: 50px;
+
+    margin-top: 50px;
+    height: 30px;
+    width: 400px;
+}
+
+#siteShareBtn li {
+    float: left;
+}
+#siteShareBtn .facebook {
+    width: 125px;
+}
+#siteShareBtn .twitter {
+    width: 120px;
+}
+#siteShareBtn .hatebu {
+    width: 80px;
+}
+#siteShareBtn .plusone {
+    width: 65px;
+}
+
+/* Media Query
+----------------------------------- */ 
+/*デバイスサイズの最大幅*/
+@media screen and (max-device-width: 1000px) {
+	#siteShareBtn {
+		display: none;
+	}
+}
+@media screen and (max-width: 480px) {
+	#siteShareBtn {
+/*            ボタン消す*/
+		display: none;
+	}
+}
+
+
+/* //////////////////////////////////////////////////
+[Module] 
+////////////////////////////////////////////////// */
+
+/* heading
+----------------------------------- */
+h1.ttl, h2.ttl, h3.ttl {
+	font-size: 100%;
+	font-weight: bold;
+	line-height: 1.2;
+	color: black;
+}
+h1.ttl {
+	margin-bottom: 10px;
+	
+	font-size: 247%;
+        line-height: 1.2;
+}
+
+h2.ttl {
+	padding: 10px 15px;
+	font-size: 185%;
+	background: #eee;
+	background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 1, from(black), color-stop(33%, black), color-stop(33%, white), to(white));   
+	-webkit-background-size: 3px 3px;
+	text-shadow: -2px -2px 0 white, 2px -2px 0 white, 2px 2px 0 white, -2px 2px 0 white;
+	
+}
+
+h3.ttl {
+	padding: 3px 15px;
+	border-left: solid 1px black;
+	font-size: 139%;
+	font-weight: bold;
+}
+h4.ttl {
+	margin-left: 15px;
+	padding: 1px 10px;
+	color: white;
+	font-size: 124%;
+	font-weight: normal;
+	background: black;
+}
+h5.ttl {
+	font-size: 108%;
+	font-weight: bold; 
+}
+
+
+@media screen and (max-width: 480px) {
+	h2.ttl {
+		padding: 10px 5px;
+	}
+	h1.ttl br {
+		display: inline;
+	}	
+}
+
+/* table
+----------------------------------- */
+table.module {
+	width: 100%;
+	border: solid 1px #ccc;
+}
+
+table.module caption {
+	display: none;
+}
+
+table.module th,
+table.module td {
+/*    セル内の余白*/
+	padding: 10px 15px;
+/*        下破線*/
+	border-bottom: dashed 1px #222;
+}
+
+table.module th {
+/*    セル見出し*/
+	border-right: solid 1px #ccc;
+	background: #eee;
+	color: #777;
+}
+
+table.module td {
+	border-right: solid 1px #ccc;
+}
+
+
+
+/* --------------------------------------------------
+	99. Clearfix　フロートした要素が親要素からはみ出してしまうのを回避
+-------------------------------------------------- */
+#content:after,
+.group:after {
+	content : '';
+	display : block;
+	clear : both;
+	height: 0;
+        visibility: hidden;
+
+}
+
+#content,
+.group {
+	*zoom: 1;
+}
+
+
+/* --------------------------------------------------
+	100. ページャー
+-------------------------------------------------- */
+
+/*上記のページャー*/
+.pagination {
+    margin-bottom: 20px;
+    padding-bottom: 2px;
+    font-size: 108%;  
+  text-align: right;
+}
+
+.disabled {  
+    color:#ccc;  
+}  
+
+.pagination a,span {
+      padding:0 0.2em;
+}
+
+
+.pagination p {
+/*    回り込ませる*/
+    padding-bottom: 4px;
+
+}
+
+
+.pagenumbers {
+    font-size: 100%;
+    
+}
+
+/*現在のページ番号*/
+.current {
+    font-size: 130%;
+}
+
+
+#flashMessage {
+    font-size: 124%;
+    color: red;
+}

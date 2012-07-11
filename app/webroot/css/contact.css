@@ -1,0 +1,71 @@
+/* header
+----------------------------------- */
+#movieListHeader {
+	border-bottom: solid 1px black;
+	margin-bottom: 15px;
+}
+
+
+#movieListHeader h1 {
+	float: left;
+	font-size: 247%;
+	line-height: 1.2;
+}
+
+
+/* indicateNumber
+----------------------------------- */
+#indicateNumber {
+	float: right;
+	line-height: 1;
+	margin: -3px 5px 10px 0;
+	color: black;
+}
+
+#indicateNumber .number {
+	font-size: 369%;
+	font-weight: bold;
+	margin-right: 5px; 
+}
+
+#indicateNumber .unit {
+	font-size: 139%;
+}
+#indicateNumber .amount {
+	color: #ccc;
+	font-size: 139%;
+}
+
+
+
+/* --------------------------------------------------
+	Content
+-------------------------------------------------- */
+/*全体*/
+#contactSection {
+ width: 800px;
+    margin: 0 auto;
+     padding: 40px 0px;
+}
+
+#contactSection h3 {
+    margin-bottom: 10px
+}
+
+th {
+    vertical-align: middle;
+}
+#contactSection p {
+    margin-bottom: 30px
+}
+
+em {
+ 
+    color: red;
+}
+.submit {
+    text-align: center;
+    display: block;
+    padding: 5px 30px;
+margin: 10px 0px;
+}
