@@ -11,13 +11,7 @@ App::uses('AppModel', 'Model');
  */
 class Movie extends AppModel {
   
- 
- // 検索プラグインとfind を実行するときに関連したモデルを選別したり限定したりするためのプラグイン
-  public $actsAs = array('Search.Searchable','Containable');
 
-  
-  //リストで表示されるファイールド
-	public $displayField = 'name';
 
         
 //        バリデーション
@@ -33,15 +27,13 @@ class Movie extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
                
-                    'rule' => 'isUnique',
-                    'message' => 'この作品は既に登録されています'
                 ),
 		
 		
 		'time' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
+				'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -82,66 +74,112 @@ class Movie extends AppModel {
 //		'poster' => array(
 //			'notempty' => array(
 //				'rule' => array('notempty'),
-//				'message' => '画像を選択してください',
+//				//'message' => 'Your custom message here',
+//				//'allowEmpty' => false,
+//				//'required' => false,
+//				//'last' => false, // Stop validation after this rule
+//				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+//			),
+//               
+//                    'rule' => 'isUnique',
+//                    'message' => 'この作品は既に登録されています'
+//                ),
+//		
+//		
+//		'time' => array(
+//			'numeric' => array(
+//				'rule' => array('numeric'),
+//				//'message' => 'Your custom message here',
+//				//'allowEmpty' => false,
+//				//'required' => false,
+//				//'last' => false, // Stop validation after this rule
+//				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+//			),
+//			'notempty' => array(
+//				'rule' => array('notempty'),
+//				//'message' => 'Your custom message here',
 //				//'allowEmpty' => false,
 //				//'required' => false,
 //				//'last' => false, // Stop validation after this rule
 //				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 //			),
 //		),
-		
-		'trailer' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				'message' => '入力してください',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-                 
+//		'summary' => array(
+//			'notempty' => array(
+//				'rule' => array('notempty'),
+//				//'message' => 'Your custom message here',
+//				//'allowEmpty' => false,
+//				//'required' => false,
+//				//'last' => false, // Stop validation after this rule
+//				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+//			),
+//		),
+//            
+//		'eigacom' => array(
+//			'notempty' => array(
+//				'rule' => array('notempty'),
+//				'message' => 'Your custom message here',
+//				//'allowEmpty' => false,
+//				//'required' => false,
+//				//'last' => false, // Stop validation after this rule
+//				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+//			),
+//		),
+//             
+//             
+////		'poster' => array(
+////			'notempty' => array(
+////				'rule' => array('notempty'),
+////				'message' => '画像を選択してください',
+////				//'allowEmpty' => false,
+////				//'required' => false,
+////				//'last' => false, // Stop validation after this rule
+////				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+////			),
+////		),
+//		
+//		'trailer' => array(
+//			'notempty' => array(
+//				'rule' => array('notempty'),
+//				'message' => '入力してください',
+//				//'allowEmpty' => false,
+//				//'required' => false,
+//				//'last' => false, // Stop validation after this rule
+//				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+//			),
+//		),
+//                 
+//            
+//            'Country' => array(
+//			
+//				'rule'=>array('multiple', array('min' => 1)),
+//
+//			'message' => '一つ以上選択してください'
+//			
+//		),
+//            'genres' => array(
+//			
+//				'rule'=>array('multiple', array('min' => 1)),
+//
+//			'message' => '一つ以上選択してください'
+//			
+//		),
+//            
+//            'partners' => array(
+//			
+//				'rule'=>array('multiple', array('min' => 1)),
+//
+//			'message' => '一つ以上選択してください'
+//			
+//		),
+//            
+//            'feeling_id' => array(
+//		'rule'=>array('multiple', array('min' => 1)),
+//
+//			'message' => '一つ以上選択してください'
+//		),
+//            
             
-            'Country' => array(
-			
-				'rule'=>array('multiple', array('min' => 1)),
-
-			'message' => '一つ以上選択してください'
-			
-		),
-            'genres' => array(
-			
-				'rule'=>array('multiple', array('min' => 1)),
-
-			'message' => '一つ以上選択してください'
-			
-		),
-            
-            'partners' => array(
-			
-				'rule'=>array('multiple', array('min' => 1)),
-
-			'message' => '一つ以上選択してください'
-			
-		),
-            
-            'feeling_id' => array(
-		'rule'=>array('multiple', array('min' => 1)),
-
-			'message' => '一つ以上選択してください'
-		),
-            
-            
-            'user_name' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed

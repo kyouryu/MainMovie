@@ -41,4 +41,11 @@ class UsersController extends AppController {
 		//ビューテンプレートを表示するのみ
 	}
 	
+        /**
+	 * ダッシュボード
+	 */
+	public function add(){
+		
+		//ビューテンプレートを表示するのみ
+	}
 }

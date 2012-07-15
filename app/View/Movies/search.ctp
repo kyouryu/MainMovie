@@ -18,7 +18,7 @@ echo $this->Html->script('load', array('inline' => false));
 
 <div id="searchList" class="group">
    
-<!--          <section id="keywordSet" class="sectionWrapper">
+<!--    <section id="keywordSet" class="sectionWrapper">
               <h5 class="ttl">キーワード</h5>
               <div class="formWrapper">
             <?php

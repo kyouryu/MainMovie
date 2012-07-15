@@ -1,6 +1,6 @@
 <?php
 //目当てのCSSを読み込んでくれる
-
+echo $this->Html->css('main', null, array('inline' => false));
 echo $this->Html->css('poster', null, array('inline' => false));
 $this->set('title_for_layout','ポスター画像一覧');
 ?>

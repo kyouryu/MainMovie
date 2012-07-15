@@ -15,14 +15,7 @@ echo $this->Html->script('checkbox', array('inline' => false));
         <div id="searchListInnr" class="group">
             <div id="searchContainer">
                 <?php echo $this->Form->create('Movie', array('enctype' => 'multipart/form-data',)); ?>
-                <fieldset id="keywordSet" class="fieldsetWrapper">
-                    <label for="q" class="formTitle">URL</label>
-                    <div class="formWrapper">
-                        <?php
-                        echo $this->Form->input('movie_url', array('label' => false, 'size' => 50));
-                        ?>
-                    </div>
-                </fieldset>
+               et>
 
                 <fieldset id="keywordSet" class="fieldsetWrapper">
                     <label for="keyword" class="formTitle">タイトル</label>

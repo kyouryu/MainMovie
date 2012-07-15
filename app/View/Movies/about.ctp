@@ -2,6 +2,7 @@
 //目当てのCSSを読み込んでくれる
 echo $this->Html->css('main', null, array('inline' => false));
 echo $this->Html->css('about', null, array('inline' => false));
+$this->set('title_for_layout','このサイトについて');
 ?>
 
 

@@ -2,7 +2,7 @@
 //目当てのCSSを読み込んでくれる
 echo $this->Html->css('main', null, array('inline' => false));
 echo $this->Html->css('contact', null, array('inline' => false));
-
+$this->set('title_for_layout','お問い合わせページ');
 ?>
 
 
@@ -11,23 +11,12 @@ echo $this->Html->css('contact', null, array('inline' => false));
     <h3 class="ttl">お問い合わせ</h3>
     <p>以下のお問い合わせフォームに必要事項をご記入ください。 </p>
 <!--エラーがあるならメッセージを表示する-->
-    <?php if(!empty($emptyname)) :?>
-      <div class="error-messaege">
-    <?php echo $emptyname ?>
-           </div>
-    <?php endif ?>
-    
-    <?php if(!empty($emptyemail)) :?>
-    <div class="error-messaege">
-    <?php echo $emptyemail ?>
-        </div>
-        
-    <?php endif ?>
+
 <table id="contactDataTbl" class="module"> 
 
     <tbody>
         <tr>
-            <th><?php echo $this->Form->label('user_name', 'お名前'); ?></th>
+            <th><?php echo $this->Form->label('user_name', 'お名前'); ?><em>（必須）</em></th>
             <td><?php echo $this->Form->input('user_name', array('label' => false,'size'=>'30')); ?></td>
         </tr>
         <tr>

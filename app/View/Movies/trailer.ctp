@@ -1,12 +1,14 @@
 <?php
 //目当てのCSSを読み込んでくれる
-
+echo $this->Html->css('main', null, array('inline' => false));
 echo $this->Html->css('trailer', null, array('inline' => false));
 echo $this->Html->css('prettyPhoto', null, array('inline' => false));
 echo $this->Html->script('prettyPhoto', array('inline' => false));
 $this->set('title_for_layout','予告編一覧');
 ?>
 <script type="text/javascript" charset="utf-8">
+    
+    //予告動画をすぐに見れる
         $(function() {  
       $('.gallery a[rel^="prettyPhoto"]').prettyPhoto({ theme: 'facebook' });  
     });

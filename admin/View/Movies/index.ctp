@@ -46,7 +46,7 @@ echo $this->Html->css('cake.generic', null, array('inline' => false));
 		<td class="actions">
 			<?php echo $this->Html->link(__('詳細'), array('action' => 'view', $movie['Movie']['id'])); ?>
 			<?php echo $this->Html->link(__('編集'), array('action' => 'edit', $movie['Movie']['id'])); ?>
-			<?php echo $this->Form->postLink(__('削除'), array('action' => 'delete', $movie['Movie']['id']), null, __('Are you sure you want to delete # %s?', $movie['Movie']['id'])); ?>
+			<?php echo $this->Form->postLink(__('削除'), array('action' => 'delete', $movie['Movie']['id']), null, __('本当に削除しますか？', $movie['Movie']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

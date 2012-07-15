@@ -15,23 +15,25 @@ App::import('Vendor', 'simpleHtmlDom/simple_html_dom');
  * @property Movie $Movie
  */
 class MoviesController extends AppController {
-
-    //使用するヘルパーを指定する
-    public $helpers = array('Jisaku');
+   public $helpers = array('Jisaku','Html', 'Form');
+  
+ 
     //使用するコンポネートを指定する
     public $components = array('Transition', 'Search.Prg');
     //「app/View/Layouts」でレイアウトを読み込む
     
     //使用するモデル名
-    public $name = 'Movies';
+   public $uses = array('Movie');
 
+    
     /* 共通項目
       ---------------------------------------------------- */
-
     function beforeFilter() {
-
+//タイトル
         $title_for_layout = '見たい映画に出会える・・・';
+        //キーワード
         $keywords = 'ムムット,映画,感想,レビュー,ジャンル,キャッチコピー,予告編,検索';
+        //概要
         $description = 'たくさんの映画の中から感想、レビュー、上映時間、ジャンル、キャッチコピー、予告編などで、あなたの見たい映画を検索するサイトです。';
 
         $this->set(compact('title_for_layout', 'keywords', 'description'));
@@ -50,10 +52,10 @@ class MoviesController extends AppController {
         $this->set('pager_numbers', $pager_numbers);
     }
 
+    
     /* ----------------------------------------------------   
       トップページ
       ---------------------------------------------------- */
-
     public function index() {
 
         //映画ポスターを入手する
@@ -84,7 +86,7 @@ class MoviesController extends AppController {
       ---------------------------------------------------- */
     public function search() {
 
-        //ポスター画像をランダムに取得
+        //最新が像を５０件取得
         $movies = $this->Movie->getSearch();
 
 //国情報を取得
@@ -121,9 +123,11 @@ class MoviesController extends AppController {
         $time = isset($this->request->params["named"]["time"]) ? $this->request->params["named"]["time"] : null;
         $score = isset($this->request->params["named"]["score"]) ? $this->request->params["named"]["score"] : null;
 
-//検索条件に使用された国IDを「|」を基準に区切って取得する
+       
+//検索条件に使用された国IDを「|」を基準に区切って取得する( '1|2|3' ⇒1,2,3)
         $search_country = $this->Movie->Country->getSearCountry($country_ids);
 
+    
         //検索条件に使用されたジャンルIDを「|」を基準に区切って取得する
         $search_genre = $this->Movie->Genre->getSearGenre($genre_ids);
 
@@ -152,7 +156,9 @@ class MoviesController extends AppController {
         //ページング設定(50件ずつ)
         $this->paginate = array(
             'conditions' => $conditions,
+             'modified'=>'DESC',
             'limit' => 50,
+             
         );
 
 
@@ -183,9 +189,11 @@ class MoviesController extends AppController {
 //                $maxNum = $page * $limit;
 //            }
 
+            
             //全レコード件数を取得
             $total = $this->Movie->find('count');
 
+            
             $this->set(compact('total'));
 
             //検索に一致したデータをviewに送る
@@ -195,10 +203,10 @@ class MoviesController extends AppController {
 
     
     /* ----------------------------------------------------
-      #ポスター一覧ページ
+      #ポスターページ
       ---------------------------------------------------- */
     public function poster() {
-        //50件ずつ表示
+        //48件ずつ表示
         $this->paginate = array(
              'fields'=>array(
                 'id',
@@ -221,7 +229,7 @@ class MoviesController extends AppController {
       #キャッチコピーページ
       ---------------------------------------------------- */
 	public function catchcopy() {
- //50件ずつ表示
+ //30件ずつ表示
         $this->paginate = array(
             'limit' => 30,
             'order' => array(
@@ -239,7 +247,7 @@ class MoviesController extends AppController {
       #予告動画ページ
       ---------------------------------------------------- */
 	public function trailer() {
- //50件ずつ表示
+ //28件ずつ表示
         $this->paginate = array(
             'limit' => 28,
             'order' => array(
@@ -256,19 +264,21 @@ class MoviesController extends AppController {
       ---------------------------------------------------- */
     public function view($id = null) {
 
-        //取得したidを代入する
-        $this->Movie->id = $id;
-
-        //存在しないなら
-        if (!$this->Movie->exists()) {
-            //404エラーを表示する
-            throw new NotFoundException(__('Invalid movie'));
-        }
-
-        //あるIDのデータをフィールド情報＋データで受け取る
-        $this->set('movie', $this->Movie->read(null, $id));
-
-        $this->Movie->FeelingsMovie->virtualFields['cnt'] = 0;	
+           //作品データを取得
+		$movie = $this->Movie->findById($id);
+                
+                //なければエラーメッセージ
+		if(empty($movie)) {
+			$this->Session->setFlash('作品が見つかりませんでした');
+			$this->redirect(array('action'=> 'search'));
+		}
+		
+		$this->set(compact('movie'));
+                
+        
+        //グラフ用のコード
+        $this->Movie->FeelingsMovie->virtualFields['cnt'] = 0;
+        
         $cound=Array(
        'conditions' => array('FeelingsMovie.movie_id' => $id), 
         'fields' =>  array('FeelingsMovie.feeling_id','COUNT(FeelingsMovie.movie_id) AS FeelingsMovie__cnt'),
@@ -291,28 +301,19 @@ class MoviesController extends AppController {
     public function contact() {
 
 
-        if (!empty($this->request->data)) {
-
-            if ($this->request->data['Movie']['user_name'] === "") {
-                $emptyname = '名前を入力してください';
-                $this->set(compact('emptyname'));
-            }
-
-
-//メールアドレスの形式チェック
-            if (!preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $this->request->data['Movie']['email'])) {
-                $emptyemail = 'メールアドレスが正しくありません。';
-                $this->set(compact('emptyemail'));
-            }
-
-            if ($this->request->data['Movie']['email'] === "") {
-                $emptyemail = 'メールアドレスを入力してください。';
-                $this->set(compact('emptyemail'));
-            }
-
-            if (empty($emptyname) && empty($emptyemail)) {
-// テンプレートに送る変数
-                $ary_body = array(
+       if(!empty($this->request->data)) { 
+             
+           //値をセットする
+      $this->Movie->set($this->request->data);
+      
+      //  手動でバリデーション
+      //バリデーションに引っかからないのなら
+      if($this->Movie->validates()) {
+      
+ 
+      //メールアドレスが空でないなら、送信処理をする
+       if(!empty($this->request->data['Movie']['email'])) { 
+     $ary_body = array(
                     'name' => $this->request->data['Movie']['user_name'],
                     'email' => $this->request->data['Movie']['email'],
                     'category' => $this->request->data['Movie']['category'],
@@ -345,9 +346,13 @@ class MoviesController extends AppController {
                         ->subject('問い合わせ内容')
                         ->send();
                 $this->redirect(array('action' => 'thanks'));
-            }
-        }
-    }
+      
+    } 
+       }
+       }
+  } 
+
+ 
 
     
     //サンキューページ

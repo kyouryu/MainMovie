@@ -56,16 +56,19 @@ class Country extends AppModel {
 }
 
 
- //選択した国を確認画面で表示する
-   public function getAddCountry($ids) {
-$cond=array();
-        foreach ($ids as $id) {
-            $cond[] = $id;
-        }
-        
-        return $this->find('list', Array('conditions' => Array('Country.id' => $cond)));
-        
-   }   
+// //選択した国を確認画面で表示する
+//   public function getAddCountry($ids) {
+//$cond=array();
+//
+////国idを１つずつ取り出す
+//        foreach ($ids as $id) {
+//            $cond[] = $id;
+//        }
+//        
+//        //よって、国idが一致する国だけを取り出す
+//        return $this->find('list', Array('conditions' => Array('Country.id' => $cond)));
+//        
+//   }   
 
    
    

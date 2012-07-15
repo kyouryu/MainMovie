@@ -1,5 +1,4 @@
 <?php
-App::uses('AppModel', 'Model');
 /**
  * Movie Model
  *
@@ -13,7 +12,7 @@ class Movie extends AppModel {
   
  
  // 検索プラグインとfind を実行するときに関連したモデルを選別したり限定したりするためのプラグイン
-  public $actsAs = array('Search.Searchable','Containable');
+ public $actsAs = array('Search.Searchable','Containable');
 
   
   //リストで表示されるファイールド
@@ -23,74 +22,9 @@ class Movie extends AppModel {
 //        バリデーション
 	public $validate = array(
             
-		'name' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-               
-                    'rule' => 'isUnique',
-                    'message' => 'この作品は既に登録されています'
-                ),
 		
-		
-		'time' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'summary' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-            
-		'eigacom' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-             
-             
-//		'poster' => array(
-//			'notempty' => array(
-//				'rule' => array('notempty'),
-//				'message' => '画像を選択してください',
-//				//'allowEmpty' => false,
-//				//'required' => false,
-//				//'last' => false, // Stop validation after this rule
-//				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-//			),
-//		),
-		
-		'trailer' => array(
+		'user_name' => array(
+			
 			'notempty' => array(
 				'rule' => array('notempty'),
 				'message' => '入力してください',
@@ -100,50 +34,41 @@ class Movie extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-                 
             
-            'Country' => array(
-			
-				'rule'=>array('multiple', array('min' => 1)),
-
-			'message' => '一つ以上選択してください'
-			
-		),
-            'genres' => array(
-			
-				'rule'=>array('multiple', array('min' => 1)),
-
-			'message' => '一つ以上選択してください'
-			
-		),
-            
-            'partners' => array(
-			
-				'rule'=>array('multiple', array('min' => 1)),
-
-			'message' => '一つ以上選択してください'
-			
-		),
-            
-            'feeling_id' => array(
-		'rule'=>array('multiple', array('min' => 1)),
-
-			'message' => '一つ以上選択してください'
-		),
-            
-            
-            'user_name' => array(
-			'notempty' => array(
+            'email' => array(
+             'notempty' => array(
 				'rule' => array('notempty'),
-				'message' => 'Your custom message here',
+				'message' => '入力してください',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			
+			'email' => array(
+				  'rule' => array('email'),
+				'message' => 'メールアドレスが正しくありません',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-	);
-
+            
+            
+            'body' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => '入力してください',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			
+                            
+                            )
+                ),
+            );
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
         
@@ -247,18 +172,21 @@ class Movie extends AppModel {
   );  
   
   
-//  timeで呼び出される「〜」で区切る
+//  timeで呼び出される60-90を「-」で区切る
 function timeBetween($data = array()) {
+    //検索時間を取得
 		$time = $data['time'];
+                //それを「-」で区切る
 		$times = explode('-', $time);
                
-		if($time) {
+		
 			$coditions = $times;
-		}
+		
 		return $coditions;
 	}
     
-    
+        
+    //検索国を取得する
    function searchCountry($data = array()) {
         $this->CountriesMovie->Behaviors->attach('Containable', array('autoFields' => false));
         $this->CountriesMovie->Behaviors->attach('Search.Searchable');
@@ -272,6 +200,7 @@ function timeBetween($data = array()) {
         return $query;
     }
     
+    //検索ジャンルを取得
      function searchGenre($data = array()) {
         $this->GenresMovie->Behaviors->attach('Containable', array('autoFields' => false));
         $this->GenresMovie->Behaviors->attach('Search.Searchable');
@@ -289,6 +218,7 @@ function timeBetween($data = array()) {
         return $condition;
     }
     
+    //検索相手を取得
     function searchPartner($data = array()) {
         $this->MoviesPartner->Behaviors->attach('Containable', array('autoFields' => false));
         $this->MoviesPartner->Behaviors->attach('Search.Searchable');
@@ -301,6 +231,7 @@ function timeBetween($data = array()) {
         return $query;
     }
     
+    //検索感想を取得
     function searchFeeling($data = array()) {
         $this->FeelingsMovie->Behaviors->attach('Containable', array('autoFields' => false));
         $this->FeelingsMovie->Behaviors->attach('Search.Searchable');
@@ -353,7 +284,7 @@ function timeBetween($data = array()) {
    
     /* 検索ページで使用
 ----------------------------------------------------*/
-  //画像をランダムに取得するメソッド
+  //最新画像に取得するメソッド
   public function getSearch() {
           $option =array(
         'limit' => 50 ,

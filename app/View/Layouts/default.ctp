@@ -67,7 +67,7 @@
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]--> 
     <!--/app/webroot/css」でCSSを読み込む-->
-     <?php echo $this->Html->css('main', null); ?>
+
      <?php echo $scripts_for_layout; ?>
 </head>
 <body>

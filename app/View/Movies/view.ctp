@@ -61,8 +61,11 @@ $this->set('keywords',$movie['Movie']['name'].',ムムット,映画,感想,レ�
 <tr><th>ひとこと感想</th><td><?php echo $this->Jisaku->getName($movie['Feeling']) ?></td></tr>
 <tr><th>誰と見る？</th><td><?php echo $this->Jisaku->getName($movie['Partner']) ?></td></tr>
 <tr><th>オススメ度</th><td><?php 
+
+//スコア分だけ星を表示
 $max = 5;
 $level = h($movie['Movie']['score']);
+//スコア分だけ金星を表示し、５−スコア分だけ白星を表示
 echo str_repeat($this->Html->image('star_on.png'), $level) . str_repeat($this->Html->image('star_off.png'), $max-$level);
 ?> <?php echo $level ?>
         </td></tr>

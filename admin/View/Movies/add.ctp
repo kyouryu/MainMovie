@@ -19,6 +19,9 @@ echo $this->Html->css('search', null, array('inline' => false));
 <div id="searchListInnr" class="group">
     <div id="searchContainer">
   <?php echo  $this->Form->create('Movie'); ?>
+      
+        
+        
                           <fieldset id="keywordSet" class="fieldsetWrapper">
                     <label for="q" class="formTitle">URL</label>
                       <div class="formWrapper">

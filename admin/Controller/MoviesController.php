@@ -48,22 +48,22 @@ class MoviesController extends AppController {
         $this->set('movies', $this->paginate());
     }
     
-    /* ----------------------------------------------------
+    
+    
+       /* ----------------------------------------------------
       #詳細ページ
       ---------------------------------------------------- */
     public function view($id = null) {
 
-        //取得したidを代入する
-        $this->Movie->id = $id;
-
-        //存在しないなら
-        if (!$this->Movie->exists()) {
-            //404エラーを表示する
-            throw new NotFoundException(__('Invalid movie'));
-        }
-
-        //あるIDのデータをフィールド情報＋データで受け取る
-        $this->set('movie', $this->Movie->read(null, $id));
+           
+		$movie = $this->Movie->findById($id);
+		if(empty($movie)) {
+			$this->Session->setFlash('作品が見つかりませんでした');
+			$this->redirect(array('action'=> 'search'));
+		}
+		
+		$this->set(compact('movie'));
+                
 
     }
 
@@ -139,47 +139,16 @@ class MoviesController extends AppController {
       #編集ページ
       ---------------------------------------------------- */
     public function edit($id = null) {
-//cssを適用しない
-      
-    
-        //指定のIDを取得する
-        $this->Movie->id = $id;
-        if (!$this->Movie->exists()) {
-            throw new NotFoundException(__('Invalid movie'));
-        }
-
-
-
-        //現在のページのリクエストが「post」であるなら、editアクション時には「isput」
-        if ($this->request->is('post') || $this->request->is('put')) {
-
-            if (!empty($this->request->data)) {
-                if (!empty($this->request->data['Movie']['movie_url'])) {
-                    $url = $this->request->data['Movie']['movie_url'];
-
-                    $html = file_get_contents($url);
-                    $htmlEnco = mb_convert_encoding($html, "UTF-8", "auto");
-                    $htmlDom = str_get_html($htmlEnco);
-                    $data = $htmlDom->find('#title h1');
-                    $summarry = $htmlDom->find('p.outline');
-                    $year = $htmlDom->find('.moveInfoBox strong');
-
-                    foreach ($data as $key => $element) {
-
-                        $this->request->data['Movie']['name'] = $element->plaintext;
-                        $this->request->data['Movie']['summary'] = mb_substr($summarry[$key]->plaintext, 0, 80);
-                        $this->request->data['Movie']['year'] = $year[$key]->plaintext;
-                    }
-
-                    $this->request->data['Movie']['eigacom'] = str_replace("http://eigacom/movie/", "", $url);
-                }
-
-
-                //ポスターが存在するなら
+          $this->Movie->id = $id;
+          
+if($this->request->isPost() || $this->request->isPut()) {
+                     //ポスターが存在するなら
+     if (!empty($this->request->data)) {
                 if (!empty($this->request->data['Movie']['poster']['size'])) {
 
                     //ポスターデータを入れる
                     $poster = $this->request->data['Movie']['poster'];
+                  
                     //アップロードする関数にポスターIDとデータIDを渡す
                     $this->request->data["Movie"]["poster"] = $this->Movie->uploadImage($poster, $this->Movie->id);
                     $this->Session->setFlash("ファイルのアップロードに成功しました。");
@@ -187,36 +156,31 @@ class MoviesController extends AppController {
                     //ポスターフィールドを削除
                     unset($this->request->data["Movie"]["poster"]);
                 }
-            }
-
-
-
-            //データがあるなら保存する
-            if ($this->Movie->save($this->request->data)) {
-
-
-                //表示するメッセージ
-                $this->Session->setFlash(__('更新しました'));
-                //ページ遷移
-                $this->redirect(array('action' => 'index'));
-            } else {
-                //エラーメッセージ
-                $this->Session->setFlash(__('更新できませんでした'));
-            }
-        } else {
-            //$idが指定されていたらそのデータを読み込む
-            $this->request->data = $this->Movie->read(null, $id);
-
-        }
-
-
-
-        $countries = $this->Movie->Country->getCountry();
+     }
+     
+			if($this->Movie->save($this->request->data)) {
+				$this->Session->setFlash('問い合わせを保存しました');
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash('入力に間違いがあります');
+			}
+		} else {
+			$this->request->data = $this->Movie->findById($id);
+			if(empty($this->request->data)) {
+				$this->Session->setFlash('作品が見つかりませんでした');
+				$this->redirect(array('action'=> 'index'));
+			}
+		}
+                
+               $countries = $this->Movie->Country->getCountry();
         $genres = $this->Movie->Genre->getGenre();
         $feelings = $this->Movie->Feeling->getFeeling();
         $partners = $this->Movie->Partner->getPartner();
         $this->set(compact('poster', 'countries', 'feelings', 'genres', 'partners', 'isEdit'));
-    }
+                
+	}
+
+
 
 
     
@@ -225,33 +189,25 @@ class MoviesController extends AppController {
       #削除ページ
       ---------------------------------------------------- */
     public function delete($id = null) {
-        if (!$this->request->is('post')) {
-
-
-            throw new MethodNotAllowedException();
-        }
-        $this->Movie->id = $id;
-
-        if (!$this->Movie->exists()) {
-//            これはエラーページを生成し、その例外のログを取ります。
-            throw new NotFoundException(__('Invalid movie'));
-        }
+    $this->Movie->id = $id;
 
         //IDに一致するレコードを削除
-        if ($this->Movie->delete($this->Movie->id)) {
+        if ($this->Movie->delete($id)) {
             //movie_idに一致するレコードを削除する
-            $this->Movie->CountriesMovie->delete(array('movie_id' => $this->Movie->id));
-            $this->Movie->GenresMovie->delete(array('movie_id' => $this->Movie->id));
-            $this->Movie->MoviesPartner->delete(array('movie_id' => $this->Movie->id));
-            $this->Movie->FeelingsMovie->delete(array('movie_id' => $this->Movie->id));
+            $this->Movie->CountriesMovie->delete(array('movie_id' => $id));
+            $this->Movie->GenresMovie->delete(array('movie_id' => $id));
+            $this->Movie->MoviesPartner->delete(array('movie_id' => $id));
+            $this->Movie->FeelingsMovie->delete(array('movie_id' => $id));
 
             $this->Session->setFlash(__('削除しました'));
-            $this->redirect(array('action' => 'all_list'));
+            $this->redirect(array('action' => 'index'));
         }
 
         $this->Session->setFlash(__('削除できませんでした'));
-        $this->redirect(array('action' => 'all_list'));
+        $this->redirect(array('action' => 'index'));
     }
 
+    
+     
 }
 

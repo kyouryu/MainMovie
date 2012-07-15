@@ -1,18 +1,10 @@
 <?php
 //目当てのCSSを読み込んでくれる
-
+echo $this->Html->css('main', null, array('inline' => false));
 echo $this->Html->css('catchcopy', null, array('inline' => false));
 $this->set('title_for_layout','キャッチコピー一覧');
 ?>
 
-<script type="text/javascript">
-    $(function() {
-  
-
-        $(".gallery").preloader();
-
-
-    </script>
                 <header id="movieListHeader" class="group">
 <h1>キャッチコピー 一覧</h1>
 

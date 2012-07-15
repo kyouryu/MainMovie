@@ -34,6 +34,8 @@ $this->set('title_for_layout','検索結果');
             <li>検索タイトル：<?php echo h($search_title); ?></li>
             <?php endif ?>
             -->
+            
+<!--            検索条件があるなら表示していく-->
              <?php if(!empty($search_time)): ?>
             <li>上映時間：<?php echo h($search_time); ?>分</li>
             <?php endif ?>
@@ -128,6 +130,7 @@ $this->set('title_for_layout','検索結果');
 
 <?php else: ?>
 
+<!--一致する作品がないなら-->
 <div align="center"><p><strong style="color:#A74860">その条件に一致する作品はございません。</strong></p></div>
 
  <?php endif ?>

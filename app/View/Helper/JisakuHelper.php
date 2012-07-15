@@ -19,6 +19,8 @@ class JisakuHelper extends AppHelper {
 //$this->Test->selectYear('year', 1000, 2000);で使用する
  
     
+    
+    //時間のプルダウンを作成
      function selectTime($field, $minTime, $maxTime) 
     {
         $timeList = array();
@@ -29,6 +31,8 @@ class JisakuHelper extends AppHelper {
     }
 
     
+    
+    //resultsで使用
     //Array ( [3] => アジア [2] => アメリカ ) 配列
     //results.ctpで使用。取得した検索条件配列を「/」で区切って渡す
     function getSearch($items) {
@@ -40,6 +44,7 @@ class JisakuHelper extends AppHelper {
     }
 
 
+//    view.ctpで使用
     //Array ( [0] => Array ( [id] => 2 [name] => アメリカ ) )配列
     //viewで使用。国名やジャンル名のみを「/」で区切って渡す
     function getName($items) {
@@ -59,6 +64,7 @@ function summary($summary) {
 
 
 
+//スコアのプルダウンを作成
 function selectScore() {
       $scoreList = array();
         for ($i = 1 ; $i <= 5 ; ++$i) {
@@ -72,15 +78,9 @@ function selectScore() {
     }
 
     
-    
-    function getStar($level) {
-    $max = 5;
-    return str_repeat($this->Html->image('star_ylw.gif'), $level) . str_repeat($this->Html->image('star_wht.gif'), $max-$level);
-}
 
 
-
-
+//検索に一致した作品数を取得
   function getTotal($movie) {
    
     return $movie["count"];
@@ -88,6 +88,7 @@ function selectScore() {
 }
 
 
+//現ページの最小表示数を取得
  function getMin($movie) {
        //現ページ番号
             $page =$movie["page"];
@@ -102,6 +103,7 @@ function selectScore() {
 
 }
 
+//現ページの最大表示数を取得
  function getMax($movie) {
     $count = $movie["count"];
     
@@ -126,14 +128,14 @@ function selectScore() {
 
 
  
- public function getJsonh($feelings) {
-     foreach ($feelings as $feeling) {
-       $rows[]=  $feeling['FeelingsMovie']['feeling_id'];
-       $rows[]=$feeling['count'];
-     }
-     
-     var_dump($rows);
-     exit();
-}
+// public function getJsonh($feelings) {
+//     foreach ($feelings as $feeling) {
+//       $rows[]=  $feeling['FeelingsMovie']['feeling_id'];
+//       $rows[]=$feeling['count'];
+//     }
+//     
+//     var_dump($rows);
+//     exit();
+//}
 }
 ?>

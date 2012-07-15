@@ -50,16 +50,16 @@ class Genre extends AppModel {
 }
 
 
- public function getAddGenre($ids) {
-$cond=array();
-        foreach ($ids as $id) {
-            $cond[] = $id;
-        }
-        
-        return $this->find('list', Array('conditions' => Array('Genre.id' => $cond)));
-        
-   }   
-   
+// public function getAddGenre($ids) {
+//$cond=array();
+//        foreach ($ids as $id) {
+//            $cond[] = $id;
+//        }
+//        
+//        return $this->find('list', Array('conditions' => Array('Genre.id' => $cond)));
+//        
+//   }   
+//   
    
 
 public function getSearGenre($ids) {

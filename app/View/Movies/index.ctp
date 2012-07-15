@@ -12,9 +12,11 @@ echo $this->Html->script('preloader', array('inline' => false));
 <script type="text/javascript">
     $(function() {
   
-
+//ローディング中を表示
         $(".gallery").preloader();
 
+
+//スライドを表示
         $('#sliderList').slider({
             autoplay: true,
             showControls: true,

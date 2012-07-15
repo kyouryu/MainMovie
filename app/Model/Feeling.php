@@ -51,15 +51,15 @@ class Feeling extends AppModel {
 
 
 
- public function getAddFeeling($ids) {
-$cond=array();
-        foreach ($ids as $id) {
-            $cond[] = $id;
-        }
-        
-        return $this->find('list', Array('conditions' => Array('Feeling.id' => $cond)));
-        
-   }   
+// public function getAddFeeling($ids) {
+//$cond=array();
+//        foreach ($ids as $id) {
+//            $cond[] = $id;
+//        }
+//        
+//        return $this->find('list', Array('conditions' => Array('Feeling.id' => $cond)));
+//        
+//   }   
    
    
 public function getSearFeeling($ids) {
